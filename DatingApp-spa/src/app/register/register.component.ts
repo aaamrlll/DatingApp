@@ -22,7 +22,6 @@ export class RegisterComponent implements OnInit {
         this.alertify.success('registration succes');
       },
       error => {
-        console.log(this.model);
         this.alertify.error(error);
       }
     );
