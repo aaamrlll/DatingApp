@@ -63,19 +63,30 @@ export class PhotoEditorComponent implements OnInit {
           isMain: res.isMain
         };
         this.photos.push(photo);
+        if (photo.isMain) {
+          this.authService.changeMemberPhoto(photo.url);
+          this.authService.currentUser.photoUrl = photo.url;
+          localStorage.setItem(
+            'user',
+            JSON.stringify(this.authService.currentUser)
+          );
+        }
       }
     };
   }
   deletePhoto(id: number) {
- this.aletify.confirm('Are you sure?', () => {
-   this.userService.deletePhoto(this.authService.decodedToken.nameid, id).subscribe(() => {
-     this.photos.splice(this.photos.findIndex(p => p.id === id), 1);
-     this.aletify.success('photo deleted');
-   }, error => this.aletify.error('cant delete photo')
-
-   );
- });
-}
+    this.aletify.confirm('Are you sure?', () => {
+      this.userService
+        .deletePhoto(this.authService.decodedToken.nameid, id)
+        .subscribe(
+          () => {
+            this.photos.splice(this.photos.findIndex(p => p.id === id), 1);
+            this.aletify.success('photo deleted');
+          },
+          error => this.aletify.error('cant delete photo')
+        );
+    });
+  }
 
   setMainPhoto(photo: Photo) {
     this.userService
