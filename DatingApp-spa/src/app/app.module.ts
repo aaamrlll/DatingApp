@@ -30,6 +30,7 @@ import { PhotoEditorComponent } from './members/photo-editor/photo-editor.compon
 import { FileUploadModule } from 'ng2-file-upload';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import {TimeAgoPipe} from 'time-ago-pipe';
+import { ListResolver } from './_resolvers/lists.resolver';
 
 export function tokenGetterfunction() {
    return localStorage.getItem('token');
@@ -81,6 +82,7 @@ export function tokenGetterfunction() {
       MemberDetailResolver,
       MemberListResolver,
       MemberEditResolver,
+      ListResolver,
       PreventUnsavedChangesGuard
    ],
    bootstrap: [
