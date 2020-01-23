@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +11,14 @@ import { HttpClient } from '@angular/common/http';
 export class HomeComponent implements OnInit {
   registermode = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(private router: Router, private authservice: AuthService) {
 
-  ngOnInit() {}
+  }
+
+  ngOnInit() {
+    if (this.authservice.loggedIn()) {
+        this.router.navigate(['/members']);
+    }
+
+  }
 }

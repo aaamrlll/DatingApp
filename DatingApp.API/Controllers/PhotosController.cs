@@ -36,6 +36,7 @@ namespace DatingApp.API.Controllers
                 _cludinaryConfig.Value.ApiSecret
             );
             _cloudinary = new Cloudinary(acc);
+            
 
 
         }
